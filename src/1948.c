@@ -1,62 +1,31 @@
 #include <stdio.h>
-
-int comprobar_division(int divisor, int dividendo) {
-	if (divisor > dividendo){
-		return 0;
-	}
-	int acumulador = dividendo;
-	while (acumulador >= divisor) {
-		acumulador -= divisor;
-	}
-	return (acumulador == 0) ? 1 : 0;
-}
-int division_entera(int dividendo, int divisor) {
-	int cociente = 0;
-	int acumulador = dividendo;
-	while (acumulador >= divisor){
-		acumulador -= divisor;
-		cociente++;
-	}
-	return cociente;
-}
-int max_divisor_primo(int n){
-	if (n < 2){
-	return -1;
-	}
-	int max_divisor = 1;
-	int divisor = 2;
-	while (divisor * divisor <= n) {
-		if (comprobar_division(divisor, n)) {
-			max_divisor = divisor;
-			while (comprobar_division(divisor,n)){
-				n = division_entera(n, divisor);
-			}
-		} else {
-        	divisor++;
-		}
-}
-
-	if (n > 1){
-		max_divisor = n;
-	}
-
-    return max_divisor;
-}
-
-int main(void){
-	int a;
+int division_natural(int dividendo,int divisor);
+int main(){
+    int num1;
+    int num2;
     char c;
-	if (scanf("%d%c", &a, &c) != 2 && c != '\n') {
-          printf("n/a\n");
-          return 0;
-	}
-
-    int result = max_divisor_primo(a);
-    if (result == -1){
-      printf("n/a\n");
+    if (scanf("%d%d%c", &num1,&num2, &c) == 3 && c == '\n'){
+    int resultado = division_natural(num1,num2);
+    printf("%d\n",resultado);
     } else {
-      printf("%d\n", result);
+    printf("n/a\n");
     }
-
-    return 0;
+return 0;
 }
+// creamos un metodo para dividir sin utilizar el operador "/" en C
+// la division natural te devuelve el numero entero del resultado, si es 7/2 = 3
+int division_natural(int dividendo,int divisor){
+  int contador = 0;
+  while(dividendo > 0){ //100
+    dividendo = dividendo - divisor; // dividendo - divisor es lo mismo que 100 - 10
+                                    // y el dividendo de la izquierda sera
+                                    // el valor de 100 - 10 que es igual a 90
+    contador++; // contador = contador + 1;
+  }
+  return contador;
+}
+
+// funcion para saber si un numero primo o no (un numero primo es primo si solo se puede
+// dividir entre 1 y si mismo)
+// crear una funcion para saber si un numero es primo o no es primo utilizando la funcion
+// que hemos creado.
